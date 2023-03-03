@@ -28,7 +28,7 @@ class LoginScreen: UIView {
     lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = .yellow
         label.font = UIFont.boldSystemFont(ofSize: 40)
         label.text = "FISIOTERAPIA"
         return label
@@ -84,6 +84,53 @@ class LoginScreen: UIView {
         return tf
     }()
     
+    lazy var recoverPasswordButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Recuperar Senha", for: .normal)
+        button.setTitleColor(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0), for: .normal)
+        button.addTarget(self, action: #selector(tappedRecoverPasswordButton), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var subLoginImageview: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "fBotao")
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 8
+        image.contentMode = .scaleToFill
+        return image
+    }()
+
+    lazy var loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Entrar", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 8
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var lineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints =  false
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    @objc func tappedRecoverPasswordButton(_ sender: UIButton) {
+        print(#function)
+    }
+    
+    @objc func tappedLoginButton(_ sender: UIButton) {
+        print(#function)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addElements()
@@ -101,6 +148,10 @@ class LoginScreen: UIView {
         self.addSubview(self.descriptionLabel)
         self.addSubview(self.loginTextField)
         self.addSubview(self.passwordTextField)
+        self.addSubview(self.recoverPasswordButton)
+        self.addSubview(self.subLoginImageview)
+        self.addSubview(self.loginButton)
+        self.addSubview(self.lineView)
     }
     
     private func configConstraints() {
@@ -133,6 +184,24 @@ class LoginScreen: UIView {
             passwordTextField.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalTo: loginTextField.heightAnchor),
             
+            recoverPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 9),
+            recoverPasswordButton.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
+            recoverPasswordButton.heightAnchor.constraint(equalToConstant: 16),
+             
+            subLoginImageview.topAnchor.constraint(equalTo: recoverPasswordButton.bottomAnchor, constant: 36),
+            subLoginImageview.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
+            subLoginImageview.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
+            subLoginImageview.heightAnchor.constraint(equalToConstant: 43),
+            
+            loginButton.topAnchor.constraint(equalTo: subLoginImageview.topAnchor),
+            loginButton.leadingAnchor.constraint(equalTo: subLoginImageview.leadingAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: subLoginImageview.trailingAnchor),
+            loginButton.bottomAnchor.constraint(equalTo: subLoginImageview.bottomAnchor),
+            
+            lineView.topAnchor.constraint(equalTo: subLoginImageview.bottomAnchor, constant: 48),
+            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 64),
+            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -64),
+            lineView.heightAnchor.constraint(equalToConstant: 0.5)
         
         ])
     }
