@@ -116,6 +116,29 @@ class LoginScreen: UIView {
         return button
     }()
     
+    lazy var subRegisterImageview: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "fBotao")
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 8
+        image.contentMode = .scaleToFill
+        return image
+    }()
+    
+    lazy var RegisterButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Cadastrar", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 8
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(tappedRegisterButton), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var lineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints =  false
@@ -128,6 +151,10 @@ class LoginScreen: UIView {
     }
     
     @objc func tappedLoginButton(_ sender: UIButton) {
+        print(#function)
+    }
+    
+    @objc func tappedRegisterButton(_ sender: UIButton) {
         print(#function)
     }
     
@@ -151,6 +178,8 @@ class LoginScreen: UIView {
         self.addSubview(self.recoverPasswordButton)
         self.addSubview(self.subLoginImageview)
         self.addSubview(self.loginButton)
+        self.addSubview(self.subRegisterImageview)
+        self.addSubview(self.RegisterButton)
         self.addSubview(self.lineView)
     }
     
@@ -191,18 +220,28 @@ class LoginScreen: UIView {
             subLoginImageview.topAnchor.constraint(equalTo: recoverPasswordButton.bottomAnchor, constant: 36),
             subLoginImageview.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
             subLoginImageview.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
-            subLoginImageview.heightAnchor.constraint(equalToConstant: 43),
+            subLoginImageview.heightAnchor.constraint(equalToConstant: 35),
             
             loginButton.topAnchor.constraint(equalTo: subLoginImageview.topAnchor),
             loginButton.leadingAnchor.constraint(equalTo: subLoginImageview.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: subLoginImageview.trailingAnchor),
             loginButton.bottomAnchor.constraint(equalTo: subLoginImageview.bottomAnchor),
             
-            lineView.topAnchor.constraint(equalTo: subLoginImageview.bottomAnchor, constant: 48),
+            subRegisterImageview.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 11),
+            subRegisterImageview.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
+            subRegisterImageview.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
+            subRegisterImageview.heightAnchor.constraint(equalTo: subLoginImageview.heightAnchor),
+            
+            RegisterButton.topAnchor.constraint(equalTo: subRegisterImageview.topAnchor),
+            RegisterButton.leadingAnchor.constraint(equalTo: subRegisterImageview.leadingAnchor),
+            RegisterButton.trailingAnchor.constraint(equalTo: subRegisterImageview.trailingAnchor),
+            RegisterButton.bottomAnchor.constraint(equalTo: subRegisterImageview.bottomAnchor),
+            
+            lineView.topAnchor.constraint(equalTo: RegisterButton.bottomAnchor, constant: 48),
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 64),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -64),
             lineView.heightAnchor.constraint(equalToConstant: 0.5)
-        
+
         ])
     }
 
