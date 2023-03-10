@@ -116,16 +116,6 @@ class LoginScreen: UIView {
         return button
     }()
     
-    lazy var subRegisterImageview: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "fBotao")
-        image.clipsToBounds = true
-        image.layer.cornerRadius = 8
-        image.contentMode = .scaleToFill
-        return image
-    }()
-    
     lazy var RegisterButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -178,7 +168,6 @@ class LoginScreen: UIView {
         self.addSubview(self.recoverPasswordButton)
         self.addSubview(self.subLoginImageview)
         self.addSubview(self.loginButton)
-        self.addSubview(self.subRegisterImageview)
         self.addSubview(self.RegisterButton)
         self.addSubview(self.lineView)
     }
@@ -227,15 +216,10 @@ class LoginScreen: UIView {
             loginButton.trailingAnchor.constraint(equalTo: subLoginImageview.trailingAnchor),
             loginButton.bottomAnchor.constraint(equalTo: subLoginImageview.bottomAnchor),
             
-            subRegisterImageview.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 11),
-            subRegisterImageview.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
-            subRegisterImageview.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
-            subRegisterImageview.heightAnchor.constraint(equalTo: subLoginImageview.heightAnchor),
-            
-            RegisterButton.topAnchor.constraint(equalTo: subRegisterImageview.topAnchor),
-            RegisterButton.leadingAnchor.constraint(equalTo: subRegisterImageview.leadingAnchor),
-            RegisterButton.trailingAnchor.constraint(equalTo: subRegisterImageview.trailingAnchor),
-            RegisterButton.bottomAnchor.constraint(equalTo: subRegisterImageview.bottomAnchor),
+            RegisterButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 11),
+            RegisterButton.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
+            RegisterButton.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor),
+            RegisterButton.heightAnchor.constraint(equalTo: loginButton.heightAnchor),
             
             lineView.topAnchor.constraint(equalTo: RegisterButton.bottomAnchor, constant: 48),
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 64),
